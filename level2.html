@@ -116,6 +116,44 @@
             document.location.href=""; // restart game
         }
     }
+
+    Topbumper = function(){
+        tTopbumper = new Sprite(game, "img/bumper.png", 950, 50);
+        tTopbumper.setSpeed(0);
+
+        tTopbumper.reset = function(){
+            this.setPosition(475, 1175);
+        };
+
+        tTopbumper.reset();
+
+        return tTopbumper;
+    };
+
+    function checkTopbumper(){
+        if (ball.collidesWith(topbumper)) {
+            ball.setY(950);
+        }
+    }
+
+    Lowbumper = function(){
+        tLowbumper = new Sprite(game, "img/bumper.png", 950, 50);
+        tLowbumper.setSpeed(0);
+
+        tLowbumper.reset = function(){
+            this.setPosition(475, 25);
+        };
+
+        tLowbumper.reset();
+
+        return tLowbumper;
+    };
+
+    function checkLowbumper(){
+        if (ball.collidesWith(lowbumper)) {
+            ball.setY(250);
+        }
+    }
     
     Goal = function(){
         tGoal = new Sprite(game, "img/goal.png", 50, 50);
@@ -135,7 +173,8 @@
     
     function checkGoal(){
         if (ball.collidesWith(goal)){
-            goal.reset();
+            alert('Congratulations! You have completed the level!');
+            game.stop();
         } // end if
     } // end check
     
@@ -146,6 +185,8 @@
         goal = new Goal();
         lava = new Lava();
         lava2 = new Lava2();
+        topbumper = new Topbumper();
+        lowbumper = new Lowbumper();
         //conveyor = new Conveyor();
         accel = new Accel();
         
@@ -167,6 +208,10 @@
         lava.update();
         checkLava2();
         lava2.update();
+        checkTopbumper();
+        topbumper.update();
+        checkLowbumper();
+        lowbumper.update();
         //conveyor.update();
         ball.update();
     } // end update
