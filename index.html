@@ -53,7 +53,24 @@
             
             ball.setDX(newDX);
             ball.setDY(newDY);
-        } ;// end checkAccel
+        };// end checkAccel
+
+        tBall.checkBounds = function(){
+            //ensure the ball doesn't wrap to opposite side of screen
+            //when traveling past edge boundaries
+            if (this.y > 1190) {
+                this.y = 1190;
+            }
+            if (this.y < 10) {
+                this.y = 10;
+            }
+            if (this.x < 10) {
+                this.x = 10;
+            }
+            if (this.x > 940) {
+                this.x = 940;
+            }
+        };
         
         return tBall;
     }; // end ball
@@ -79,12 +96,26 @@
             goal.reset();
         } // end if
     } // end check
+
+    Wall = function(){
+        tWall = new Sprite(game, "img/brick.png", 30, 30);
+        tWall.setSpeed(0);
+
+        tWall.reset = function(){
+            this.setPosition(100, 100);
+        }; // end reset
+
+        tWall.reset();
+
+        return tWall;
+    };
     
     function init(){
         game = new Scene();
         game.setSize(950, 1200);
         ball = new Ball();
         goal = new Goal();
+        wall = new Wall();
         accel = new Accel();
         
         game.start();
@@ -101,6 +132,7 @@
         
         checkGoal();
         goal.update();
+        wall.update();
         ball.update();
     } // end update
     
