@@ -384,7 +384,7 @@ function Sprite(scene, imageFile, width, height){
       diffY = this.y - sprite.y;
       dist = Math.sqrt((diffX * diffX) + (diffY * diffY));
       return dist;
-  } // end distanceTo
+  };// end distanceTo
 
   this.forceOutOfRect = function(rect) {
     myTop = this.y - (this.height / 2);
@@ -415,7 +415,7 @@ function Sprite(scene, imageFile, width, height){
       }
     }
 
-  }
+  };
 
   // checks only the bottom and top of two rects
   this.forceOutOfRect_Horizontal = function(rect) {
