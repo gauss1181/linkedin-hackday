@@ -10,6 +10,12 @@
     var ball;
     var goal;
     var accel;
+    var tWall1;
+    var tWall2;
+    var tWall3;
+    var tWall4;
+    var tWall5;
+    var tWall6;
 
     Ball = function(){
         tBall = new Sprite(game, "img/redBall.png", 40, 40);
@@ -461,6 +467,15 @@
         checkSpike2();
         spike2.update();
         ball.update();
+
+        // resolve collisions
+        ball.forceOutOfRect(tWall1);
+        ball.forceOutOfRect(tWall2);
+        ball.forceOutOfRect(tWall3);
+        ball.forceOutOfRect(tWall4);
+        ball.forceOutOfRect(tWall5);
+        ball.forceOutOfRect(tWall6);
+
     } // end update
     
     </script>
