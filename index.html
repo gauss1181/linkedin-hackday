@@ -174,18 +174,24 @@
 
         return tWall6;
     };
-    
+
     function init(){
         game = new Scene();
         game.setSize(950, 1200);
         ball = new Ball();
         goal = new Goal();
-        wall1 = new Wall1();
-        wall2 = new Wall2();
-        wall3 = new Wall3();
-        wall4 = new Wall4();
-        wall5 = new Wall5();
-        wall6 = new Wall6();
+        // wall1 = new Wall1();
+        // wall2 = new Wall2();
+        // wall3 = new Wall3();
+        // wall4 = new Wall4();
+        // wall5 = new Wall5();
+        // wall6 = new Wall6();
+        console = document.getElementById("blockCounter");
+        // init rect ...
+        rect = new Sprite(game, "img/brick.png", 240, 80);
+        rect.setPosition(475, 600);
+        rect.setSpeed(0);
+        
         accel = new Accel();
         
         game.start();
@@ -202,13 +208,18 @@
         
         checkGoal();
         goal.update();
-        wall1.update();
-        wall2.update();
-        wall3.update();
-        wall4.update();
-        wall5.update();
-        wall6.update();
+        rect.update();
+        // wall1.update();
+        // wall2.update();
+        // wall3.update();
+        // wall4.update();
+        // wall5.update();
+        // wall6.update();
+        
+        ball.forceOutOfRect(rect);
         ball.update();
+        // ball.update();
+        console.innerHTML = "ball.x" + ball.x + "," + "ball.y" + "ball.y";
     } // end update
     
     </script>
