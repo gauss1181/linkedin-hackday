@@ -97,6 +97,58 @@
         } // end if
     } // end check
 
+    Lava1 = function(){
+        tLava1 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava1.setSpeed(0);
+
+        tLava1.reset = function(){
+            this.setPosition(400, 1100);
+        };
+
+        tLava1.reset();
+
+        return tLava1;
+    };
+
+    Lava2 = function(){
+        tLava2 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava2.setSpeed(0);
+
+        tLava2.reset = function(){
+            this.setPosition(300, 800);
+        };
+
+        tLava2.reset();
+
+        return tLava2;
+    };
+
+    Lava3 = function(){
+        tLava3 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava3.setSpeed(0);
+
+        tLava3.reset = function(){
+            this.setPosition(340, 550);
+        };
+
+        tLava3.reset();
+
+        return tLava3;
+    };
+
+    Lava4 = function(){
+        tLava4 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava4.setSpeed(0);
+
+        tLava4.reset = function(){
+            this.setPosition(550, 400);
+        };
+
+        tLava4.reset();
+
+        return tLava4;
+    };
+
     Wall1 = function(){
         tWall1 = new Sprite(game, "img/brick.png", 40, 200);
         tWall1.setSpeed(0);
@@ -186,6 +238,10 @@
         wall4 = new Wall4();
         wall5 = new Wall5();
         wall6 = new Wall6();
+        lava1 = new Lava1();
+        lava2 = new Lava2();
+        lava3 = new Lava3();
+        lava4 = new Lava4();
         accel = new Accel();
         
         game.start();
@@ -208,6 +264,10 @@
         wall4.update();
         wall5.update();
         wall6.update();
+        lava1.update();
+        lava2.update();
+        lava3.update();
+        lava4.update();
         ball.update();
     } // end update
     
