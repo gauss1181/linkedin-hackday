@@ -23,8 +23,8 @@
         tBall.setPosition(900, 1100);
         
         tBall.reset = function(){
-            newX = Math.random() * this.cWidth;
-            newY = Math.random() * this.cHeight;
+            newX = 900;
+            newY = 1100;
             
             this.setPosition(newX, newY);            
         }; // end reset
@@ -119,7 +119,8 @@
     function checkGoal(){
         if (ball.collidesWith(goal)){
             alert('Congratulations! You have completed the level!');
-            document.location.href="level2.html";
+            game.stop();
+            document.location.href="level2.html"; // next level
         } // end if
     } // end check
 
