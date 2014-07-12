@@ -48,8 +48,8 @@
             newDX = accel.getAY();
             newDY = accel.getAX();
             
-            newDX *= -4;
-            newDY *= -4;
+            newDX *= -5;
+            newDY *= -5;
             
             ball.setDX(newDX);
             ball.setDY(newDY);
@@ -97,17 +97,56 @@
         } // end if
     } // end check
 
-    Wall = function(){
-        tWall = new Sprite(game, "img/brick.png", 30, 30);
-        tWall.setSpeed(0);
+    Wall1 = function(){
+        tWall1 = new Sprite(game, "img/brick.png", 40, 200);
+        tWall1.setSpeed(0);
 
-        tWall.reset = function(){
-            this.setPosition(100, 100);
+        tWall1.reset = function(){ 
+            this.setPosition(700, 1100);
         }; // end reset
 
-        tWall.reset();
+        tWall1.reset();
 
-        return tWall;
+        return tWall1;
+    }; // end wall 1
+
+    Wall2 = function(){
+        tWall2 = new Sprite(game, "img/brick.png", 800, 40);
+        tWall2.setSpeed(0);
+
+        tWall2.reset = function(){
+            this.setPosition(400, 200);
+        }; // end reset
+
+        tWall2.reset();
+
+        return tWall2;
+    }; // end wall 2
+
+    Wall3 = function(){
+        tWall3 = new Sprite(game, "img/brick.png", 40, 400);
+        tWall3.setSpeed(0);
+
+        tWall3.reset = function(){
+            this.setPosition(150, 500);
+        }; // end reset
+
+        tWall3.reset();
+
+        return tWall3;
+    }; // end wall 3
+
+    Wall4 = function(){
+        tWall4 = new Sprite(game, "img/brick.png", 500, 40);
+        tWall4.setSpeed(0);
+
+        tWall4.reset = function(){
+            this.setPosition(700, 750);
+        }; // end reset
+
+        tWall4.reset();
+
+        return tWall4;
     };
     
     function init(){
@@ -115,7 +154,10 @@
         game.setSize(950, 1200);
         ball = new Ball();
         goal = new Goal();
-        wall = new Wall();
+        wall1 = new Wall1();
+        wall2 = new Wall2();
+        wall3 = new Wall3();
+        wall4 = new Wall4();
         accel = new Accel();
         
         game.start();
@@ -132,7 +174,10 @@
         
         checkGoal();
         goal.update();
-        wall.update();
+        wall1.update();
+        wall2.update();
+        wall3.update();
+        wall4.update();
         ball.update();
     } // end update
     
