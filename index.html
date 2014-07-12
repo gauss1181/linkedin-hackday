@@ -148,6 +148,32 @@
 
         return tWall4;
     };
+
+    Wall5 = function(){
+        tWall5 = new Sprite(game, "img/brick.png", 40, 200);
+        tWall5.setSpeed(0);
+
+        tWall5.reset = function(){
+            this.setPosition(470, 870);
+        }; // end reset
+
+        tWall5.reset();
+
+        return tWall5;
+    };
+
+    Wall6 = function(){
+        tWall6 = new Sprite(game, "img/brick.png", 240, 40);
+        tWall6.setSpeed(0);
+
+        tWall6.reset = function(){
+            this.setPosition(370, 990);
+        }; // end reset
+
+        tWall6.reset();
+
+        return tWall6;
+    };
     
     function init(){
         game = new Scene();
@@ -158,6 +184,8 @@
         wall2 = new Wall2();
         wall3 = new Wall3();
         wall4 = new Wall4();
+        wall5 = new Wall5();
+        wall6 = new Wall6();
         accel = new Accel();
         
         game.start();
@@ -178,6 +206,8 @@
         wall2.update();
         wall3.update();
         wall4.update();
+        wall5.update();
+        wall6.update();
         ball.update();
     } // end update
     
