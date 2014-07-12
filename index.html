@@ -12,9 +12,9 @@
     var accel;
 
     Ball = function(){
-        tBall = new Sprite(game, "img/redBall.png", 25, 25);
+        tBall = new Sprite(game, "img/redBall.png", 40, 40);
         tBall.setSpeed(0);
-        tBall.setPosition(100, 100);
+        tBall.setPosition(900, 1100);
         
         tBall.reset = function(){
             newX = Math.random() * this.cWidth;
@@ -80,8 +80,8 @@
         tGoal.setSpeed(0);
         
         tGoal.reset = function(){
-            newX = Math.random() * this.cWidth;
-            newY = Math.random() * this.cHeight;
+            newX = 100;
+            newY = 100;
             
             this.setPosition(newX, newY);
         }; // end reset
@@ -96,6 +96,132 @@
             goal.reset();
         } // end if
     } // end check
+
+    Lava1 = function(){
+        tLava1 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava1.setSpeed(0);
+
+        tLava1.reset = function(){
+            this.setPosition(400, 1100);
+        };
+
+        tLava1.reset();
+
+        return tLava1;
+    };
+
+    function checkLava1(){
+        if (ball.collidesWith(lava1)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Lava2 = function(){
+        tLava2 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava2.setSpeed(0);
+
+        tLava2.reset = function(){
+            this.setPosition(300, 800);
+        };
+
+        tLava2.reset();
+
+        return tLava2;
+    };
+
+    function checkLava2(){
+        if (ball.collidesWith(lava2)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Lava3 = function(){
+        tLava3 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava3.setSpeed(0);
+
+        tLava3.reset = function(){
+            this.setPosition(340, 550);
+        };
+
+        tLava3.reset();
+
+        return tLava3;
+    };
+
+    function checkLava3(){
+        if (ball.collidesWith(lava3)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Lava4 = function(){
+        tLava4 = new Sprite(game, "img/lava.png", 50, 50);
+        tLava4.setSpeed(0);
+
+        tLava4.reset = function(){
+            this.setPosition(550, 400);
+        };
+
+        tLava4.reset();
+
+        return tLava4;
+    };
+
+    function checkLava4(){
+        if (ball.collidesWith(lava4)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Spike1 = function(){
+        tSpike1 = new Sprite(game, "img/spikes_top.png", 60, 60);
+        tSpike1.setSpeed(0);
+
+        tSpike1.reset = function(){
+            this.setPosition(500, 30);
+        };
+
+        tSpike1.reset();
+
+        return tSpike1;
+    };
+
+    function checkSpike1(){
+        if (ball.collidesWith(spike1)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Spike2 = function(){
+        tSpike2 = new Sprite(game, "img/spikes.png", 60, 60);
+        tSpike2.setSpeed(0);
+
+        tSpike2.reset = function(){
+            this.setPosition(30, 500);
+        };
+
+        tSpike2.reset();
+
+        return tSpike2;
+    };
+
+    function checkSpike2(){
+        if (ball.collidesWith(spike2)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
 
     Wall1 = function(){
         tWall1 = new Sprite(game, "img/brick.png", 40, 200);
@@ -180,18 +306,18 @@
         game.setSize(950, 1200);
         ball = new Ball();
         goal = new Goal();
-        // wall1 = new Wall1();
-        // wall2 = new Wall2();
-        // wall3 = new Wall3();
-        // wall4 = new Wall4();
-        // wall5 = new Wall5();
-        // wall6 = new Wall6();
-        console = document.getElementById("blockCounter");
-        // init rect ...
-        rect = new Sprite(game, "img/brick.png", 240, 80);
-        rect.setPosition(475, 600);
-        rect.setSpeed(0);
-        
+        wall1 = new Wall1();
+        wall2 = new Wall2();
+        wall3 = new Wall3();
+        wall4 = new Wall4();
+        wall5 = new Wall5();
+        wall6 = new Wall6();
+        lava1 = new Lava1();
+        lava2 = new Lava2();
+        lava3 = new Lava3();
+        lava4 = new Lava4();
+        spike1 = new Spike1();
+        spike2 = new Spike2();
         accel = new Accel();
         
         game.start();
@@ -208,15 +334,25 @@
         
         checkGoal();
         goal.update();
-        rect.update();
-        // wall1.update();
-        // wall2.update();
-        // wall3.update();
-        // wall4.update();
-        // wall5.update();
-        // wall6.update();
-        
-        ball.forceOutOfRect(rect);
+
+        wall1.update();
+        wall2.update();
+        wall3.update();
+        wall4.update();
+        wall5.update();
+        wall6.update();
+        checkLava1();
+        lava1.update();
+        checkLava2();
+        lava2.update();
+        checkLava3();
+        lava3.update();
+        checkLava4();
+        lava4.update();
+        checkSpike1();
+        spike1.update();
+        checkSpike2();
+        spike2.update();
         ball.update();
         // ball.update();
         console.innerHTML = "ball.x" + ball.x + "," + "ball.y" + "ball.y";
