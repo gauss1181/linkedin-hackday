@@ -387,14 +387,34 @@ function Sprite(scene, imageFile, width, height){
   } // end distanceTo
 
   this.forceOutOfRect = function(rect) {
+    myTop = this.y - (this.height / 2);
+    myBottom = this.y + (this.height / 2);
+    rectTop = rect.y - (rect.height / 2);
+    rectBottom = rect.y + (rect.height / 2);
+    myLeft = this.x - (this.width / 2);
+    myRight = this.x + (this.width / 2);
+    rectLeft = rect.x - (rect.width / 2);
+    rectRight = rect.x + (rect.width / 2);
+
+    abs_diff_h = Math.min(Math.abs(myTop - rectBottom), Math.abs(myBottom - rectTop));
+    abs_diff_v = Math.min(Math.abs(myLeft - rectRight), Math.abs(myRight - rectLeft));
+
+    if (this.collidesWith(rect)) {
       if (rect.width >= rect.height) {
-        forceOutOfRect_Horizontal(rect);
-        forceOutOfRect_Vertical(rect);
+        if (abs_diff_h < abs_diff_v) {
+          this.forceOutOfRect_Horizontal(rect);
+        } else {
+          this.forceOutOfRect_Vertical(rect);
+        }
       } else {
-        forceOutOfRect_Vertical(rect);
-        forceOutOfRect_Horizontal(rect);
+        if (abs_diff_v < abs_diff_h) {
+          this.forceOutOfRect_Vertical(rect);
+        } else {
+          this.forceOutOfRect_Horizontal(rect);
+        }
       }
-      checkBounds();
+    }
+
   }
 
   // checks only the bottom and top of two rects
@@ -403,11 +423,15 @@ function Sprite(scene, imageFile, width, height){
       myBottom = this.y + (this.height / 2);
       rectTop = rect.y - (rect.height / 2);
       rectBottom = rect.y + (rect.height / 2);
-      if (rectBottom > myTop) {
-        this.setY(rectBottom + this.width / 2);
-      } else if (rectTop < myBottom) {
-        this.setY(rectTop - this.width / 2);
+
+      if (this.y < rect.y && myBottom > rectTop) {
+        this.setY(rectTop - 2 * this.height / 3);
       }
+
+      if (this.y > rect.y && myTop < rectBottom) {
+        this.setY(rectBottom + 2 * this.height / 3);
+      }
+
   }
 
   // checks only the left and right of two rects
@@ -416,11 +440,15 @@ function Sprite(scene, imageFile, width, height){
       myRight = this.x + (this.width / 2);
       rectLeft = rect.x - (rect.width / 2);
       rectRight = rect.x + (rect.width / 2);
-      if (rectLeft < myRight) {
-        this.setX(rectLeft - this.width / 2);
-      } else if (rectRight > myLeft) {
-        this.setX(rectRight + this.width / 2);
+
+      if (this.x < rect.x && myRight > rectLeft) {
+        this.setX(rectLeft - 2 * this.width / 3);
       }
+
+      if (this.x > rect.x && myLeft < rectRight) {
+        this.setX(rectRight + 2 * this.width / 3);
+      }
+
   }
 
   this.angleTo = function(sprite){
