@@ -12,9 +12,9 @@
     var accel;
 
     Ball = function(){
-        tBall = new Sprite(game, "img/redBall.png", 25, 25);
+        tBall = new Sprite(game, "img/redBall.png", 40, 40);
         tBall.setSpeed(0);
-        tBall.setPosition(100, 100);
+        tBall.setPosition(900, 1100);
         
         tBall.reset = function(){
             newX = Math.random() * this.cWidth;
@@ -80,8 +80,8 @@
         tGoal.setSpeed(0);
         
         tGoal.reset = function(){
-            newX = Math.random() * this.cWidth;
-            newY = Math.random() * this.cHeight;
+            newX = 100;
+            newY = 100;
             
             this.setPosition(newX, newY);
         }; // end reset
