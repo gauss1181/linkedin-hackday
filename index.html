@@ -110,6 +110,14 @@
         return tLava1;
     };
 
+    function checkLava1(){
+        if (ball.collidesWith(lava1)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
     Lava2 = function(){
         tLava2 = new Sprite(game, "img/lava.png", 50, 50);
         tLava2.setSpeed(0);
@@ -122,6 +130,14 @@
 
         return tLava2;
     };
+
+    function checkLava2(){
+        if (ball.collidesWith(lava2)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
 
     Lava3 = function(){
         tLava3 = new Sprite(game, "img/lava.png", 50, 50);
@@ -136,6 +152,14 @@
         return tLava3;
     };
 
+    function checkLava3(){
+        if (ball.collidesWith(lava3)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
     Lava4 = function(){
         tLava4 = new Sprite(game, "img/lava.png", 50, 50);
         tLava4.setSpeed(0);
@@ -148,6 +172,56 @@
 
         return tLava4;
     };
+
+    function checkLava4(){
+        if (ball.collidesWith(lava4)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Spike1 = function(){
+        tSpike1 = new Sprite(game, "img/spikes_top.png", 60, 60);
+        tSpike1.setSpeed(0);
+
+        tSpike1.reset = function(){
+            this.setPosition(500, 30);
+        };
+
+        tSpike1.reset();
+
+        return tSpike1;
+    };
+
+    function checkSpike1(){
+        if (ball.collidesWith(spike1)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
+
+    Spike2 = function(){
+        tSpike2 = new Sprite(game, "img/spikes.png", 60, 60);
+        tSpike2.setSpeed(0);
+
+        tSpike2.reset = function(){
+            this.setPosition(30, 500);
+        };
+
+        tSpike2.reset();
+
+        return tSpike2;
+    };
+
+    function checkSpike2(){
+        if (ball.collidesWith(spike2)){
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href = ""; // restart game
+        }
+    }
 
     Wall1 = function(){
         tWall1 = new Sprite(game, "img/brick.png", 40, 200);
@@ -242,6 +316,8 @@
         lava2 = new Lava2();
         lava3 = new Lava3();
         lava4 = new Lava4();
+        spike1 = new Spike1();
+        spike2 = new Spike2();
         accel = new Accel();
         
         game.start();
@@ -264,10 +340,18 @@
         wall4.update();
         wall5.update();
         wall6.update();
+        checkLava1();
         lava1.update();
+        checkLava2();
         lava2.update();
+        checkLava3();
         lava3.update();
+        checkLava4();
         lava4.update();
+        checkSpike1();
+        spike1.update();
+        checkSpike2();
+        spike2.update();
         ball.update();
     } // end update
     
