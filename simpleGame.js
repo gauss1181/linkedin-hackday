@@ -101,9 +101,13 @@ function Sprite(scene, imageFile, width, height){
     this.x += this.dx;
     this.y += this.dy;
     this.checkBounds();
+
     if (this.visible){
       this.draw();
     } // end if
+
+
+
   } // end update
 
   this.setBoundAction = function(action){
@@ -381,7 +385,44 @@ function Sprite(scene, imageFile, width, height){
       dist = Math.sqrt((diffX * diffX) + (diffY * diffY));
       return dist;
   } // end distanceTo
-  
+
+  this.forceOutOfRect = function(rect) {
+      if (rect.width >= rect.height) {
+        forceOutOfRect_Horizontal(rect);
+        forceOutOfRect_Vertical(rect);
+      } else {
+        forceOutOfRect_Vertical(rect);
+        forceOutOfRect_Horizontal(rect);
+      }
+      checkBounds();
+  }
+
+  // checks only the bottom and top of two rects
+  this.forceOutOfRect_Horizontal = function(rect) {
+      myTop = this.y - (this.height / 2);
+      myBottom = this.y + (this.height / 2);
+      rectTop = rect.y - (rect.height / 2);
+      rectBottom = rect.y + (rect.height / 2);
+      if (rectBottom > myTop) {
+        this.setY(rectBottom + this.width / 2);
+      } else if (rectTop < myBottom) {
+        this.setY(rectTop - this.width / 2);
+      }
+  }
+
+  // checks only the left and right of two rects
+  this.forceOutOfRect_Vertical = function(rect) {
+      myLeft = this.x - (this.width / 2);
+      myRight = this.x + (this.width / 2);
+      rectLeft = rect.x - (rect.width / 2);
+      rectRight = rect.x + (rect.width / 2);
+      if (rectLeft < myRight) {
+        this.setX(rectLeft - this.width / 2);
+      } else if (rectRight > myLeft) {
+        this.setX(rectRight + this.width / 2);
+      }
+  }
+
   this.angleTo = function(sprite){
       //get centers of sprites
       myX = this.x + (this.width/2);
