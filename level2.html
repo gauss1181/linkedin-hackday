@@ -74,6 +74,48 @@
         
         return tBall;
     }; // end ball
+
+    Lava = function(){
+        tLava = new Sprite(game, "img/lava.png", 500, 600);
+        tLava.setSpeed(0);
+
+        tLava.reset = function(){
+            this.setPosition(230, 600);
+        };
+
+        tLava.reset();
+
+        return tLava;
+    };
+
+    function checkLava(){
+        if (ball.collidesWith(lava)) {
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href=""; // restart game
+        }
+    }
+
+    Lava2 = function(){
+        tLava2 = new Sprite(game, "img/lava.png", 450, 600);
+        tLava2.setSpeed(0);
+
+        tLava2.reset = function(){
+            this.setPosition(780, 600);
+        };
+
+        tLava2.reset();
+
+        return tLava2;
+    };
+
+    function checkLava2(){
+        if (ball.collidesWith(lava2)) {
+            alert('Oops, you lost! Try again.');
+            game.stop();
+            document.location.href=""; // restart game
+        }
+    }
     
     Goal = function(){
         tGoal = new Sprite(game, "img/goal.png", 50, 50);
@@ -102,6 +144,8 @@
         game.setSize(950, 1200);
         ball = new Ball();
         goal = new Goal();
+        lava = new Lava();
+        lava2 = new Lava2();
         //conveyor = new Conveyor();
         accel = new Accel();
         
@@ -119,6 +163,10 @@
         
         checkGoal();
         goal.update();
+        checkLava();
+        lava.update();
+        checkLava2();
+        lava2.update();
         //conveyor.update();
         ball.update();
     } // end update
