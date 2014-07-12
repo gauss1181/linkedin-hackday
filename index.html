@@ -80,6 +80,25 @@
         
         return tBall;
     }; // end ball
+
+    Conveyor = function(){
+        tConveyor = new Sprite(game, "img/conveyor_belt.png", 200, 200);
+        tConveyor.setSpeed(0);
+
+        tConveyor.reset = function(){
+            this.setPosition(850, 500);
+        };
+
+        tConveyor.reset();
+
+        return tConveyor;
+    };
+
+    function checkConveyor(){
+        if (ball.collidesWith(conveyor)){
+            ball.setX(600);
+        }
+    }
     
     Goal = function(){
         tGoal = new Sprite(game, "img/goal.png", 50, 50);
@@ -99,7 +118,8 @@
     
     function checkGoal(){
         if (ball.collidesWith(goal)){
-            goal.reset();
+            alert('Congratulations! You have completed the level!');
+            document.location.href="level2.html";
         } // end if
     } // end check
 
@@ -424,6 +444,7 @@
         lava2 = new Lava2();
         lava3 = new Lava3();
         lava4 = new Lava4();
+        conveyor = new Conveyor();
         spike1 = new Spike1();
         spike2 = new Spike2();
         accel = new Accel();
@@ -462,6 +483,8 @@
         lava3.update();
         checkLava4();
         lava4.update();
+        checkConveyor();
+        conveyor.update();
         checkSpike1();
         spike1.update();
         checkSpike2();
